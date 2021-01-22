@@ -1,52 +1,35 @@
 package com.fivepoints.spring.models;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table
+@Table(name="user")
+@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Setter(value = AccessLevel.NONE)
     private int id;
+
     private String firstName;
     private String lastName;
     private String email;
     private String password;
 
-    public User(){}
+    @Setter(value = AccessLevel.NONE)
+    @Basic(optional = false)
+    @CreationTimestamp
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt = new Date();
 
-    public User(String firstName, String lastName,String email,String password) {
-            this.firstName=firstName;
-            this.firstName=lastName;
-            this.email=email;
-            this.password=password;
-    }
-    public int getId() {
-        return this.id;
-    }
-    public String getFirstName() {
-        return this.firstName;
-    }
-    public String getLastName() {
-        return this.lastName;
-    }
-    public String getEmail() {
-        return this.email;
-    }
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName=firstName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName=lastName;
-    }
-    public void setEmail(String email) {
-        this.email=email;
-    }
-    public void setPassword(String password) {
-        this.password=password;
-    }
+    @Setter(value = AccessLevel.NONE)
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt = new Date();
 }
