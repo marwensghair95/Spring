@@ -1,43 +1,34 @@
 package com.fivepoints.spring.models;
 
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table
+@Data
 public class Post implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Setter(value = AccessLevel.NONE)
+    private int id;
     private String titre;
     private String description;
 
- public Post(){}
+    @Setter(value = AccessLevel.NONE)
+    @Basic(optional = false)
+    @CreationTimestamp
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt = new Date();
 
-  public Post(String titre, String description) {
-
-      this.titre = titre;
-      this.description = description;
-  }
-    public Long getId() {
-        return this.id;
-    }
-
-    public String getTitre() {
-        return this.titre;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    @Setter(value = AccessLevel.NONE)
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt = new Date();
 }

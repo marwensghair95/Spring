@@ -1,33 +1,34 @@
 package com.fivepoints.spring.controllers;
 
 
-import com.fivepoints.spring.models.User;
+import com.fivepoints.spring.models.Post;
 import com.fivepoints.spring.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
+@RequestMapping(value="/Posts")
 public class PostController {
-//    private final PostService postService;
-//
-//    @Autowired
-//    public PostController(PostService postService)
-//    {
-//        this.postService = postService;
-//    }
-//
-//    @GetMapping("/users")
-//    List<Post> all() {
-//        return  this.postService.getAllUser();
-//    }
-//    @PostMapping("/addUser")
-//    Post newUsers(@RequestBody User newUser) {
-//        return  this.postService.saveNewUser(newUser);
-//    }
+
+    private final PostService postService;
+
+    @Autowired
+    public PostController(PostService postService)
+    {
+        this.postService = postService;
+    }
+
+    @GetMapping("/getPost")
+    List<Post> all() {
+        return  this.postService.getAllPost();
+    }
+    @PostMapping("/addPost")
+    Post newPosts(@RequestBody Post newPost) {
+        return  this.postService.saveNewPost(newPost);
+    }
 //    @GetMapping("/getUser/{id}")
 //    Optional<Post> getUser(@PathVariable Integer id){
 //        return  this.postService.getUserById(id);

@@ -4,8 +4,7 @@ import com.fivepoints.spring.models.User;
 import com.fivepoints.spring.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -20,11 +19,13 @@ public class UserService {
         this.userRepository = repository;
     }
 
-    public List<User>  getAllUser(){
-        return userRepository.findAll();
+    public String  saveNewUser( User newUser){
+                userRepository.save(newUser);
+                return "User added successfully";
     }
-    public User saveNewUser( User newUser){
-        return userRepository.save(newUser);
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
     public Optional<User> getUserById(Integer id){
       return userRepository.findById(id);
