@@ -4,7 +4,6 @@ import com.fivepoints.spring.models.User;
 import com.fivepoints.spring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.fivepoints.spring.payload.responses.MessageResponse;
 
