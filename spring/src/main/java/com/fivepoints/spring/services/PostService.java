@@ -2,7 +2,6 @@ package com.fivepoints.spring.services;
 
 
 import com.fivepoints.spring.models.Post;
-import com.fivepoints.spring.models.User;
 import com.fivepoints.spring.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +27,12 @@ public class PostService {
     }
     public Optional<Post> getPostById(Integer id){
         return postRepository.findById(id);
+    }
+    public List<Post> getByTitre(String titre){
+        return postRepository.getPostsByTitre(titre);
+    }
+    public List<Post> getByTitreAndDescription(String titre,String description){
+        return postRepository.getPostsByTitreAndDescription(titre,description);
     }
 
     public String delete(Integer id) {

@@ -22,8 +22,9 @@ public class UserController {
        this.userService = userService;
    }
 
-    @GetMapping("/")
+    @GetMapping("/allUsers")
     public List<User> getAllUsers() {
+
         return userService.getAllUsers();
     }
 
@@ -38,7 +39,7 @@ public class UserController {
     }
     @PutMapping("/update/{id}")
    User upateUser(@RequestBody User newUser,@PathVariable Integer id){
-       return this.userService.update(newUser,id);
+        return this.userService.update(newUser,id);
     }
     @DeleteMapping("/delete/{id}")
     String  deleteUser(@PathVariable Integer id) {

@@ -14,12 +14,14 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+
     @Autowired
     public UserService(UserRepository repository) {
         this.userRepository = repository;
     }
 
     public String  saveNewUser( User newUser){
+
                 userRepository.save(newUser);
                 return "User added successfully";
     }
@@ -27,8 +29,9 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
     public Optional<User> getUserById(Integer id){
-      return userRepository.findById(id);
+        return userRepository.findById(id);
     }
 
     public User update(User newUser, Integer id) {

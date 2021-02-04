@@ -39,6 +39,15 @@ public class PostController {
 
 
 
+    @GetMapping("/getByTitre/{titre}")
+    List<Post> getByTitre(@PathVariable String titre){
+        return  this.postService.getByTitre(titre);
+    }
+    @GetMapping("/getByTitreAndDescription/{titre}/{description}")
+    List<Post> getByTitreAndDescription(@PathVariable String titre,@PathVariable String description){
+        return  this.postService.getByTitreAndDescription(titre,description);
+    }
+
     @GetMapping("/getPost/{id}")
     Optional<Post> getPost(@PathVariable Integer id){
         return  this.postService.getPostById(id);
